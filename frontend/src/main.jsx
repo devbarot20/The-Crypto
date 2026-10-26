@@ -274,14 +274,27 @@ function StockChartModal({ stock, shortSma = 6, longSma = 30, theme, onClose }) 
             <Icon name="shield" size={15}/>
             <span>Golden crossover occurs when SMA {shortSma} crosses above SMA {longSma} (Bullish). Death cross occurs when it crosses below (Bearish).</span>
           </div>
-          <a
-            href={`https://kite.zerodha.com/chart/ext/ciq/NSE/${encodeURIComponent(stock.ticker)}`}
-            target="_blank"
-            rel="noreferrer"
-            className="trade-btn"
-          >
-            Open in Kite <Icon name="arrow" size={14}/>
-          </a>
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <a
+              href={`https://www.tradingview.com/chart/?symbol=NSE:${encodeURIComponent(stock.ticker)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="trade-btn"
+              style={{ backgroundColor: '#2563eb' }}
+              title="Open full interactive chart on TradingView"
+            >
+              TradingView <Icon name="arrow" size={14}/>
+            </a>
+            <a
+              href="https://kite.zerodha.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="trade-btn"
+              title="Open Kite Web to place orders"
+            >
+              Open Kite <Icon name="arrow" size={14}/>
+            </a>
+          </div>
         </div>
       </div>
     </div>
