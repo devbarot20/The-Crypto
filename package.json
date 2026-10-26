@@ -1,0 +1,13 @@
+{
+  "name": "kite-desk-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Kite Desk Workspace with separate frontend and backend",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "source .venv/bin/activate && uvicorn app.main:app --app-dir backend --reload --host 127.0.0.1 --port 8000",
+    "build:frontend": "npm --prefix frontend run build",
+    "install:frontend": "npm --prefix frontend install"
+  }
+}

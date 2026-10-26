@@ -1,0 +1,13 @@
+.venv/
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+__pycache__/
+*.py[cod]
+.env
+.local/
+backend/.local/
+credincial.txt
+credential.txt
+.DS_Store
