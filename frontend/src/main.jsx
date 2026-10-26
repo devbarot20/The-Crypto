@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { createChart, CandlestickSeries, LineSeries } from 'lightweight-charts'
 import './styles.css'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000'
+const RAW_API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000'
+const API_BASE = RAW_API_BASE.replace(/\/+$/, '')
 
 async function api(path, options) {
   let response
@@ -13,7 +14,7 @@ async function api(path, options) {
       ...options,
     })
   } catch {
-    throw new Error('Can’t reach the local API. Make sure the FastAPI server is running.')
+    throw new Error('Can’t reach the backend API. Please make sure the backend server is running and accessible.')
   }
   const data = await response.json().catch(() => ({}))
   if (!response.ok) throw new Error(data.detail || 'Something went wrong. Please try again.')

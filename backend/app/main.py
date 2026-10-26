@@ -25,14 +25,24 @@ CONSTITUENTS_FILE = ROOT_DIR / ".local" / "nifty100.csv"
 CONSTITUENTS_URL = "https://www.niftyindices.com/IndexConstituent/ind_nifty100list.csv"
 IST = ZoneInfo("Asia/Kolkata")
 
+raw_origins = os.getenv("CORS_ORIGINS", "*")
+if raw_origins == "*":
+    origins = ["*"]
+else:
+    origins = [orig.strip() for orig in raw_origins.split(",") if orig.strip()]
+    for local_orig in ("http://127.0.0.1:5173", "http://localhost:5173"):
+        if local_orig not in origins:
+            origins.append(local_orig)
+
 app = FastAPI(title="Kite Desk API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
+    allow_origins=origins,
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 
 class LoginPayload(BaseModel):
